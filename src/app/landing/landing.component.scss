@@ -1,0 +1,143 @@
+$royal-purple: #4b006e;
+$accent-purple: #a259ff;
+$deep-purple: #2d0036;
+$white: #fff;
+$light-purple: #e6dbff;
+$black: #000000;
+
+body,
+:host {
+  background: linear-gradient(135deg, $royal-purple 70%, $accent-purple 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: $royal-purple; /* Solid royal purple background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $light-purple;
+    letter-spacing: 2px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 2rem;
+
+    .nav-link {
+      color: $light-purple;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8vh;
+  padding: 0 1rem;
+
+  .welcome-title {
+    color: $black; /* Changed to white for better contrast */
+    font-size: 2.7rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+
+    span {
+      color: $black;
+      text-shadow: 0 2px 8px rgba(162, 89, 255, 0.2);
+    }
+  }
+
+  .subtitle {
+    color: $light-purple;
+    font-size: 1.3rem;
+    margin-bottom: 2.2rem;
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1.2rem;
+
+    .btn {
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 4px 16px rgba(76, 0, 110, 0.15);
+
+      &.signup {
+        background: $accent-purple;
+        color: $white;
+
+        &:hover {
+          background: lighten($accent-purple, 10%);
+        }
+      }
+
+      &.login {
+        background: transparent;
+        color: $accent-purple;
+        border: 2px solid $accent-purple;
+
+        &:hover {
+          background: $accent-purple;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    padding: 1.2rem 1rem;
+
+    .nav {
+      gap: 1rem;
+    }
+
+    .logo {
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  .main-content {
+    .welcome-title {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+
+    .action-buttons .btn {
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+    }
+  }
+}

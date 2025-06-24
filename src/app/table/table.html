@@ -1,64 +1,100 @@
-<div class="container-fluid full-table-container p-3">
-  <div class="table-responsive">
-    <table class="table table-bordered text-center align-middle w-100 h-75">
-      <thead class="table-light">
-        <tr>
-          <th rowspan="2">Description</th>
-          <th rowspan="2">Project</th>
-          <th>Mon<br>06/20</th>
-          <th>Tue<br>06/21</th>
-          <th>Wed<br>06/22</th>
-          <th>Thu<br>06/23</th>
-          <th>Fri<br>06/24</th>
-          <th>Sat<br>06/25</th>
-          <th>Sun<br>06/26</th>
-          <th rowspan="2">Total Hours</th>
-          <th rowspan="2">Notes</th>
-          <th rowspan="2">Status</th>
-        </tr>
-        <tr><td colspan="7"></td></tr>
-      </thead>
-      <tbody>
-        <tr class="table-primary fw-bold">
-          <td colspan="12"></td>
-        </tr>
-        <tr>
-          <td class="text-start ps-4"> </td>
-          <td>✔</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>
-            <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()"><i class="bi bi-journal-text"></i></button>
+<!-- Top-Level Layout -->
+<div class="d-flex">
+<!-- Sidebar -->
+<div class="sidebar bg-dark text-white p-3 d-flex flex-column">
+  <div class="logo mb-4 text-center">
+    <img src="assets/logo.png" alt="Logo" class="img-fluid" style="max-height: 60px;">
+  </div>
+
+  <ul class="nav flex-column flex-grow-1">
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="#"><i class="bi bi-house me-2"></i> Dashboard</a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="#"><i class="bi bi-table me-2"></i> Timesheet</a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="#"><i class="bi bi-clock-history me-2"></i> History</a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="#"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
+    </li>
+  </ul>
+
+  <!-- Profile Section -->
+  <div class="profile-section border-top pt-3">
+    <div class="d-flex align-items-center">
+      <img src="assets/profile.jpg" alt="User" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+      <div>
+        <div class="fw-bold">Shravan</div>
+        <small class="text-white-50">UI Developer</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 container-fluid full-table-container p-3">
+    <div class="table-responsive">
+      <table class="table table-bordered text-center align-middle w-100 h-75">
+        <thead class="table-light">
+          <tr>
+            <th rowspan="2">Project</th>
+            <th rowspan="2">Description</th>
+            <th>Mon<br>06/20</th>
+            <th>Tue<br>06/21</th>
+            <th>Wed<br>06/22</th>
+            <th>Thu<br>06/23</th>
+            <th>Fri<br>06/24</th>
+            <th>Sat<br>06/25</th>
+            <th>Sun<br>06/26</th>
+            <th rowspan="2">Total Hours</th>
+            <th rowspan="2">Notes</th>
+            <th rowspan="2">Status</th>
+          </tr>
+          <tr><td colspan="7"></td></tr>
+        </thead>
+        <tbody>
+          <!-- Your rows -->
+          <tr class="table-primary fw-bold"><td colspan="12"></td></tr>
+
+          <tr>
+            <td >✔</td>
+            <td>Development</td>
+            <td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>8</td>
+            <td>
+              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
+                <i class="bi bi-journal-text"></i>
+              </button>
             </td>
-          <td><span class="badge bg-success">Approved</span></td>
-        </tr>
-        <tr class="table-light fw-bold">
-          <td colspan="12"></td>
-        </tr>
-        <tr class="fw-bold">
-          <td> </td><td></td>
-          <td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td>
-          <td>0.00</td><td colspan="2"></td>
-        </tr>
-        <tr class="fw-bold">
-          <td></td><td></td>
-          <td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td>
-          <td>0.00</td><td colspan="2"></td>
-        </tr>
-        <tr class="table-secondary fw-bold">
-          <td></td><td></td>
-          <td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td>
-          <td>0.00</td><td colspan="2">
-            <button class="btn btn-sm btn-outline-secondary float-end">Hide Subtotals</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <td><span class="badge bg-success">Approved</span></td>
+          </tr>
+
+          <!-- More rows -->
+          <tr class="fw-bold">
+            <td>✔</td><td>Testing</td>
+            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td>
+              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
+                <i class="bi bi-journal-text"></i>
+              </button>
+            </td>
+            <td><span class="badge bg-warning text-dark">Pending</span></td>
+          </tr>
+
+          <tr class="table-secondary fw-bold">
+            <td></td><td></td>
+            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td colspan="2">
+              <button class="btn btn-sm btn-outline-secondary float-end">Hide Subtotals</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

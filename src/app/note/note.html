@@ -1,0 +1,11 @@
+<div class="container-fluid p-4" style="height: 20rem;">
+  <div class="form-group h-100 d-flex flex-column">
+    <label for="notesTextarea" class="form-label fw-bold mb-2">Notes</label>
+    <textarea id="notesTextarea"
+              class="form-control flex-grow-1"
+              [(ngModel)]="notes"
+              placeholder="Enter your notes here...">
+    </textarea>
+    <button class="btn btn-primary mt-2" (click)="save()">Save</button>
+  </div>
+</div>

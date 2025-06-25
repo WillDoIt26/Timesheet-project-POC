@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $royal-purple: #4b006e;
 $accent-purple: #a259ff;
 $deep-purple: #2d0036;
@@ -94,7 +96,7 @@ body,
         color: $white;
 
         &:hover {
-          background: lighten($accent-purple, 10%);
+          background: color.adjust($accent-purple, $lightness: 10%);
         }
       }
 

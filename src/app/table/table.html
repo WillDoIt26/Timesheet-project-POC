@@ -1,0 +1,70 @@
+<!-- Top-Level Layout -->
+<div class="d-flex">
+  
+<app-sidebar></app-sidebar>
+
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 container-fluid full-table-container p-3">
+    <div class="table-responsive">
+      <table class="table table-bordered text-center align-middle w-100 h-75">
+        <thead class="table-light">
+          <tr>
+            <th rowspan="2">Project</th>
+            <th rowspan="2">Description</th>
+            <th>Mon<br>06/20</th>
+            <th>Tue<br>06/21</th>
+            <th>Wed<br>06/22</th>
+            <th>Thu<br>06/23</th>
+            <th>Fri<br>06/24</th>
+            <th>Sat<br>06/25</th>
+            <th>Sun<br>06/26</th>
+            <th rowspan="2">Total Hours</th>
+            <th rowspan="2">Notes</th>
+            <th rowspan="2">Status</th>
+          </tr>
+          <tr><td colspan="7"></td></tr>
+        </thead>
+        <tbody>
+          <!-- Your rows -->
+          <tr class="table-primary fw-bold"><td colspan="12"></td></tr>
+
+          <tr>
+            <td >✔</td>
+            <td>Development</td>
+            <td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>8</td>
+            <td>
+              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
+                <i class="bi bi-journal-text"></i>
+              </button>
+            </td>
+            <td><span class="badge bg-success">Approved</span></td>
+          </tr>
+
+          <!-- More rows -->
+          <tr class="fw-bold">
+            <td>✔</td><td>Testing</td>
+            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td>
+              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
+                <i class="bi bi-journal-text"></i>
+              </button>
+            </td>
+            <td><span class="badge bg-warning text-dark">Pending</span></td>
+          </tr>
+
+          <tr class="table-secondary fw-bold">
+            <td></td><td></td>
+            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td colspan="2">
+              <button class="btn btn-sm btn-outline-secondary float-end">Hide Subtotals</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

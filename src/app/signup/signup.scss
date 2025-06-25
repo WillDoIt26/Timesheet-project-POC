@@ -4,45 +4,49 @@
   padding: 2rem;
   background: #fff; // white background
   border-radius: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+ 
   h2 {
-    color: #333;
+    color: #010101;
+    text-align: center;
     margin-bottom: 1.5rem;
-    text-align: center; // centered heading
   }
-
+ 
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+ 
   .form-group {
-    margin-bottom: 1.2rem;
-
+    display: flex;
+    flex-direction: column;
+ 
     label {
-      color: #333;
-      display: block;
+      color: #000000;
       margin-bottom: 0.5rem;
       font-weight: 500;
     }
-
+ 
     input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
+      padding: 0.8rem;
+      border: 1px solid #a259ff;
       border-radius: 0.5rem;
-      background: #fff; // input background white
-      color: #000; // input text color
+      background: rgba(255, 255, 255, 0.1);
+      color: #000000;
       font-size: 1rem;
-
-      &::placeholder {
-        color: #999;
-      }
-
+ 
       &:focus {
         outline: none;
-        border-color: #a259ff;
-        box-shadow: 0 0 0 2px rgba(162, 89, 255, 0.2);
+        border-color: #32a84f;
       }
     }
   }
-
+ 
   .btn.signup {
     width: 100%;
     padding: 0.75rem;
@@ -52,25 +56,25 @@
     border-radius: 0.5rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s ease;
-
+    transition: background 0.2s;
+ 
     &:hover {
-      background: #bb78ff;
+      background: #b37fff;
     }
   }
-
+ 
   p {
-    color: #555;
+    color: #5730b1;
     text-align: center;
-    margin-top: 1rem;
-
+ 
     a {
       color: #a259ff;
       text-decoration: none;
-
+ 
       &:hover {
         text-decoration: underline;
       }
     }
   }
 }
+ 

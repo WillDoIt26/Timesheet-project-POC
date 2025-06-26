@@ -1,4 +1,5 @@
 // middleware/roles.js
+
 function authorizeRoles(...allowedRoles) {
   return (req, res, next) => {
     if (allowedRoles.includes(req.session.user.role)) {

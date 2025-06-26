@@ -1,4 +1,3 @@
-// routes/projects.js
 const express = require('express');
 const { isAuthenticated } = require('../middleware/auth');
 const { authorizeRoles } = require('../middleware/roles');

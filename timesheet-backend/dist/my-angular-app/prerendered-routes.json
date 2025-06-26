@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "/": {},
+    "/landing": {},
+    "/login": {},
+    "/signup": {},
+    "/table": {}
+  }
+}

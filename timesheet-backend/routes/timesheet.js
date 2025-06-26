@@ -1,4 +1,3 @@
-// routes/timesheet.js
 const express = require('express');
 const { isAuthenticated } = require('../middleware/auth');
 const { authorizeRoles } = require('../middleware/roles');
@@ -6,20 +5,11 @@ const { getConn } = require('../db');
 const router = express.Router();
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-
-
-
-
-
-
-
-
 // Submit Timesheet
 router.post('/', isAuthenticated, (req, res) => {
   const user = req.session.user;
   const { week_start, status = "draft", projects } = req.body;
   if (!week_start || !projects || !Array.isArray(projects)) return res.status(400).json({ error: "Missing or invalid data" });
-
   const conn = getConn();
   conn.execute({
     sqlText: "INSERT INTO timesheets (week_start, employee_id, status, submitted_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP())",
@@ -60,12 +50,6 @@ router.post('/', isAuthenticated, (req, res) => {
   });
 });
 
-
-
-
-
-
-
 // Timesheet History (only own)
 router.get('/history', isAuthenticated, (req, res) => {
   const user = req.session.user;
@@ -99,10 +83,6 @@ router.get('/history', isAuthenticated, (req, res) => {
   });
 });
 
-
-
-
-
 // Pending Timesheets (manager/admin only)
 router.get('/pending', isAuthenticated, authorizeRoles('manager', 'admin'), (req, res) => {
   const user = req.session.user;
@@ -131,10 +111,6 @@ router.get('/pending', isAuthenticated, authorizeRoles('manager', 'admin'), (req
     }
   });
 });
-
-
-
-
 
 // Approve/Reject Timesheet (manager/admin only)
 router.post('/action/:timesheet_id', isAuthenticated, authorizeRoles('manager', 'admin'), (req, res) => {
@@ -173,19 +149,12 @@ router.post('/action/:timesheet_id', isAuthenticated, authorizeRoles('manager', 
               }
             });
           }
+          res.json({ status: "success" });
         }
       });
-      res.json({ status: "success" });
     }
   });
 });
-
-
-
-
-
-
-
 
 // CSV Export (only own)
 router.get('/export-csv', isAuthenticated, (req, res) => {

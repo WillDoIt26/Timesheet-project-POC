@@ -3,7 +3,60 @@ const bcrypt = require('bcryptjs');
 const { getConn } = require('../db');
 const router = express.Router();
 
-// Register
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: User authentication endpoints
+ */
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [username, email, password]
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *                 enum: ['employee', 'manager', 'admin']
+ *               assigned_manager_id:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     username:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     role:
+ *                       type: string
+ *       400:
+ *         description: Invalid input (missing fields or duplicate credentials)
+ *       500:
+ *         description: Database error
+ */
 router.post('/register', (req, res) => {
   const { username, email, password, role = "employee", assigned_manager_id } = req.body;
   if (!username || !email || !password) {
@@ -41,7 +94,50 @@ router.post('/register', (req, res) => {
   });
 });
 
-// Login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: User login (session-based authentication)
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [username, password]
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Successfully logged in
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: number
+ *                     username:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     role:
+ *                       type: string
+ *                     assigned_manager_id:
+ *                       type: number
+ *       400:
+ *         description: Invalid credentials
+ */
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   const conn = getConn();
@@ -64,7 +160,25 @@ router.post('/login', (req, res) => {
   });
 });
 
-// Logout
+/**
+ * @swagger
+ * /logout:
+ *   post:
+ *     summary: User logout
+ *     tags: [Authentication]
+ *     responses:
+ *       200:
+ *         description: Successfully logged out
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Logout error
+ */
 router.post('/logout', (req, res) => {
   if (req.session) {
     req.session.destroy(err => {
@@ -77,7 +191,29 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// User Info
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: Get current logged-in user info
+ *     tags: [Authentication]
+ *     responses:
+ *       200:
+ *         description: User information retrieved
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 role:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized (no active session)
+ */
 const { isAuthenticated } = require('../middleware/auth');
 router.get('/user', isAuthenticated, (req, res) => {
   const { username, email, role } = req.session.user;

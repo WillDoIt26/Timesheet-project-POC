@@ -1,96 +1,127 @@
-<!-- Top-Level Layout -->
 <div class="d-flex">
-
   <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
   <div class="flex-grow-1 container-fluid full-table-container p-3">
-
     <!-- Top Bar -->
     <div class="bg-dark text-white px-4 py-3 mb-3 rounded shadow-sm d-flex align-items-center">
       <h4 class="m-0"><i class="bi bi-clock-history me-2"></i>Timesheets</h4>
     </div>
 
     <!-- Week Selector -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-outline-primary btn-sm rounded-circle px-2">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <input type="text" class="form-control form-control-sm text-center" value="06/20/2025" style="width: 120px;" readonly>
-        <button class="btn btn-outline-primary btn-sm rounded-circle px-2">
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-      <button class="btn btn-secondary btn-sm" disabled>Current Week</button>
-    </div>
+    <div class="d-flex justify-content-center align-items-center gap-3 mb-3 px-2">
+  <!-- Arrows + Calendar -->
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn btn-outline-primary btn-sm rounded-circle px-2"
+            (click)="changeWeek(-7)">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <input type="date"
+           class="form-control form-control-sm text-center"
+           [value]="selectedDate | date:'yyyy-MM-dd'"
+           (change)="onDateChange($event)"
+           style="width: 160px;" />
+
+    <button class="btn btn-outline-primary btn-sm rounded-circle px-2"
+            (click)="changeWeek(7)">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Current Week Button -->
+  <div>
+    <button class="btn btn-outline-secondary btn-sm" (click)="goToToday()">
+      Current Week
+    </button>
+  </div>
+</div>
+
 
     <!-- Timesheet Table -->
     <div class="table-responsive">
       <table class="table table-bordered text-center align-middle w-100 h-75">
         <thead class="table-light">
           <tr>
-            <th rowspan="2">Project</th>
-            <th rowspan="2">Description</th>
-            <th>Mon<br>06/20</th>
-            <th>Tue<br>06/21</th>
-            <th>Wed<br>06/22</th>
-            <th>Thu<br>06/23</th>
-            <th>Fri<br>06/24</th>
-            <th>Sat<br>06/25</th>
-            <th>Sun<br>06/26</th>
-            <th rowspan="2">Total Hours</th>
-            <th rowspan="2">Notes</th>
-            <th rowspan="2">Status</th>
+            <th>Project</th>
+            <th>Description</th>
+            <th *ngFor="let d of weekLabels">{{ d }}</th>
+            <th>Total Hours</th>
+            <th>Notes</th>
+            <th>Status</th>
+            <th></th> <!-- Remove -->
           </tr>
-          <tr><td colspan="7"></td></tr>
         </thead>
-        <tbody>
-          <tr class="table-primary fw-bold"><td colspan="12"></td></tr>
 
-          <tr class = "fw-bold">
-            <td>Billable</td>
-            <td>Development</td>
-            <td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            <td>8</td>
+        <tbody>
+          <tr *ngFor="let entry of timesheetData; let idx = index" class="fw-bold">
             <td>
-              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
+              <input [(ngModel)]="entry.projectType"
+                     class="form-control form-control-sm text-center" />
+            </td>
+            <td>
+              <input [(ngModel)]="entry.description"
+                     class="form-control form-control-sm text-center" />
+            </td>
+
+            <td *ngFor="let h of entry.hours; let i = index">
+              <input type="number"
+                     [(ngModel)]="entry.hours[i]"
+                     class="form-control form-control-sm text-center"
+                     (input)="updateTotal(entry)" />
+            </td>
+
+            <td>{{ entry.total }}</td>
+
+            <td>
+              <button style="font-size: x-large; border: none; background-color: transparent;" 
+                      (click)="openNoteDialog()">
                 <i class="bi bi-journal-text"></i>
               </button>
             </td>
-            <td><span class="badge bg-success">Approved</span></td>
+
+            <td>
+              <span class="badge"
+                    [ngClass]="{
+                      'bg-success': entry.status === 'Approved',
+                      'bg-warning text-dark': entry.status === 'Pending',
+                      'bg-secondary': entry.status === 'Not Started'
+                    }">
+                {{ entry.status }}
+              </span>
+            </td>
+
+            <td>
+              <button class="btn btn-outline-danger btn-sm" (click)="removeProject(idx)">
+                <i class="bi bi-trash3-fill me-1"></i> Remove
+              </button>
+            </td>
           </tr>
 
-          <tr class="fw-bold">
-            <td>Non-Billable</td><td>Testing</td>
-            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            <td>0</td>
-            <td>
-              <button style="font-size: x-large; border: none; background-color: transparent;" (click)="openNoteDialog()">
-                <i class="bi bi-journal-text"></i>
+          <tr>
+            <td colspan="13" class="text-end">
+              <button class="btn btn-outline-primary btn-sm" (click)="addProjectRow()">
+                <i class="bi bi-plus-circle me-1"></i> Add Project
               </button>
             </td>
-            <td><span class="badge bg-warning text-dark">Pending</span></td>
           </tr>
 
           <tr class="table-secondary fw-bold">
-            <td colspan="2">Total</td>
-            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            <td>0</td>
-            <td colspan="2">
-              <button class="btn btn-sm btn-outline-secondary float-end">Hide Subtotals</button>
+            <td colspan="2">Daily Total</td>
+            <td *ngFor="let total of getDailyTotals()"
+                [ngClass]="{ 'bg-danger text-white': total !== 8 }">
+              {{ total }}
             </td>
+            <td colspan="4"></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Action Buttons -->
+    <!-- Footer Buttons -->
     <div class="d-flex justify-content-end gap-2 mt-3">
       <button class="btn btn-outline-secondary">Cancel</button>
       <button class="btn btn-primary">Save</button>
       <button class="btn btn-success">Submit Week</button>
     </div>
-
   </div>
 </div>

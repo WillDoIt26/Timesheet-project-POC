@@ -1,11 +1,31 @@
 <!-- Top-Level Layout -->
 <div class="d-flex">
-  
-<app-sidebar></app-sidebar>
 
+  <app-sidebar></app-sidebar>
 
   <!-- Main Content -->
   <div class="flex-grow-1 container-fluid full-table-container p-3">
+
+    <!-- Top Bar -->
+    <div class="bg-dark text-white px-4 py-3 mb-3 rounded shadow-sm d-flex align-items-center">
+      <h4 class="m-0"><i class="bi bi-clock-history me-2"></i>Timesheets</h4>
+    </div>
+
+    <!-- Week Selector -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-primary btn-sm rounded-circle px-2">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <input type="text" class="form-control form-control-sm text-center" value="06/20/2025" style="width: 120px;" readonly>
+        <button class="btn btn-outline-primary btn-sm rounded-circle px-2">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      <button class="btn btn-secondary btn-sm" disabled>Current Week</button>
+    </div>
+
+    <!-- Timesheet Table -->
     <div class="table-responsive">
       <table class="table table-bordered text-center align-middle w-100 h-75">
         <thead class="table-light">
@@ -26,11 +46,10 @@
           <tr><td colspan="7"></td></tr>
         </thead>
         <tbody>
-          <!-- Your rows -->
           <tr class="table-primary fw-bold"><td colspan="12"></td></tr>
 
-          <tr>
-            <td >✔</td>
+          <tr class = "fw-bold">
+            <td>Billable</td>
             <td>Development</td>
             <td>8</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
             <td>8</td>
@@ -42,9 +61,8 @@
             <td><span class="badge bg-success">Approved</span></td>
           </tr>
 
-          <!-- More rows -->
           <tr class="fw-bold">
-            <td>✔</td><td>Testing</td>
+            <td>Non-Billable</td><td>Testing</td>
             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
             <td>0</td>
             <td>
@@ -56,7 +74,7 @@
           </tr>
 
           <tr class="table-secondary fw-bold">
-            <td></td><td></td>
+            <td colspan="2">Total</td>
             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
             <td>0</td>
             <td colspan="2">
@@ -66,5 +84,13 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button class="btn btn-outline-secondary">Cancel</button>
+      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-success">Submit Week</button>
+    </div>
+
   </div>
 </div>

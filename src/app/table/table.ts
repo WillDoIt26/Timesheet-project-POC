@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Note } from '../note/note';
 import { Sidebar } from '../sidebar/sidebar';
+import { RouterModule } from '@angular/router';
 
 interface TimesheetEntry {
   projectType: string;
@@ -16,7 +17,7 @@ interface TimesheetEntry {
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, Sidebar],
+  imports: [CommonModule, FormsModule, Sidebar,RouterModule],
   templateUrl: './table.html',
   styleUrl: './table.scss',
 })

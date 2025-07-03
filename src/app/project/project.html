@@ -1,0 +1,23 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="project-tiles">
+  <div class="tile" *ngFor="let project of projects">
+    <div class="tile-header">
+      <span>{{ project.name }}</span>
+      <span 
+        class="flag" 
+        [ngClass]="{'approved': project.status === 'approved', 'pending': project.status === 'pending'}"
+        title="{{ project.status | titlecase }}"
+      >
+        {{ project.status === 'approved' ? '✔️' : '⏳' }}
+      </span>
+    </div>
+    <div class="tile-body">
+      <div>Manager: {{ project.manager }}</div>
+      <div>Team Lead: {{ project.teamLead }}</div>
+    </div>
+  </div>
+</div>
+<button (click)="addProject()">Add Project</button>
+
+</div>

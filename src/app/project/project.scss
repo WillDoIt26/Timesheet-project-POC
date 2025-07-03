@@ -1,0 +1,38 @@
+.project-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tile {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1rem;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.flag {
+  font-size: 1.3em;
+  &.approved {
+    color: green;
+  }
+  &.pending {
+    color: orange;
+  }
+}
+
+.tile-body {
+  font-size: 0.95em;
+}

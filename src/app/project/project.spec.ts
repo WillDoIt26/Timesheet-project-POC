@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProjectComponent } from './project';
+import { Project } from './project';
 
-describe('ProjectComponent', () => {
-  let component: ProjectComponent;
-  let fixture: ComponentFixture<ProjectComponent>;
+describe('Project', () => {
+  let component: Project;
+  let fixture: ComponentFixture<Project>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectComponent ]
+      imports: [],
+      declarations: [Project]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProjectComponent);
+    fixture = TestBed.createComponent(Project);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,7 +25,6 @@ describe('ProjectComponent', () => {
     const initialCount = component.projects.length;
     component.addProject();
     expect(component.projects.length).toBe(initialCount + 1);
-    expect(component.projects[component.projects.length - 1].status).toBe('pending');
+    expect(component.projects[component.projects.length - 1].status).toBe('Pending');
   });
 });
-

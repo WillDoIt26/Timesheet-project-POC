@@ -1,23 +1,27 @@
-<div class="d-flex">
-    <app-sidebar></app-sidebar>
-    <div class="project-tiles">
-  <div class="tile" *ngFor="let project of projects">
-    <div class="tile-header">
-      <span>{{ project.name }}</span>
-      <span 
-        class="flag" 
-        [ngClass]="{'approved': project.status === 'approved', 'pending': project.status === 'pending'}"
-        title="{{ project.status | titlecase }}"
-      >
-        {{ project.status === 'approved' ? '✔️' : '⏳' }}
-      </span>
+<div class="project-layout">
+  <app-sidebar class="sidebar"></app-sidebar>
+  <div class="main-content flex-grow-1 container-fluid full-table-container p-3">
+    <!-- Top Bar -->
+    <div class="bg-dark text-white px-4 py-3 mb-3 rounded shadow-sm d-flex align-items-center">
+      <h4 class="m-0"><i class="bi bi-briefcase me-2"></i> Project</h4>
     </div>
-    <div class="tile-body">
-      <div>Manager: {{ project.manager }}</div>
-      <div>Team Lead: {{ project.teamLead }}</div>
+    <!-- Project Tiles Grid -->
+    <div class="project-tiles-wrapper">
+      <div class="project-tile d-flex align-items-center" *ngFor="let project of projects; let i = index">
+        <div class="project-logo">
+          <img *ngIf="project.logoUrl" [src]="project.logoUrl" alt="Logo" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;" />
+        </div>
+        <div class="project-details flex-grow-1">
+          <h2>{{ project.name }}</h2>
+          <p><strong>Manager:</strong> {{ project.manager }}</p>
+          <p><strong>Team Lead:</strong> {{ project.teamLead }}</p>
+          <span class="status" [ngClass]="project.status.toLowerCase()">{{ project.status }}</span>
+        </div>
+        <div class="ms-auto">
+          <button *ngIf="project.status !== 'Approved'" class="btn btn-outline-danger btn-sm" (click)="projects.splice(i, 1)"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
     </div>
+    <button class="add-project-btn" (click)="addProject()">Add Project</button>
   </div>
-</div>
-<button (click)="addProject()">Add Project</button>
-
 </div>

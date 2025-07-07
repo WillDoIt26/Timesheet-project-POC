@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Note } from '../note/note';
 import { Sidebar } from '../sidebar/sidebar';
+// import { ElementRef } from '@angular/core';
+
 
 interface TimesheetEntry {
   projectType: string;
@@ -43,7 +45,14 @@ export class Table implements OnInit {
   ];
 
   constructor(private dialog: MatDialog) {}
+  // constructor(private dialog: MatDialog, private elementRef: ElementRef) {}
 
+//   ngAfterViewInit() {
+//   const inputField = this.elementRef.nativeElement.querySelector('input[type="number"]');
+//   inputField.addEventListener('input', () => {
+//     inputField.focus();
+//   });
+// }
   ngOnInit(): void {
     this.setCurrentWeek(this.selectedDate);
   }

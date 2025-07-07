@@ -3,6 +3,7 @@ import { LandingComponent } from './landing/landing.component';
 import { SignupComponent} from './signup/signup';
 import { Login } from './login/login';
 import { Table } from './table/table';
+import{ Project } from './project/project';
 
 
 export const routes: Routes = [
@@ -10,5 +11,6 @@ export const routes: Routes = [
     {path:'landing',component:LandingComponent},
     { path: 'signup', component:SignupComponent },
     { path: 'login', component: Login},
-    {path:'table',component:Table}
+    {path:'table',component:Table},
+    {path:'project',component:Project}
 ];

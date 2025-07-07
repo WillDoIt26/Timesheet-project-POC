@@ -4,7 +4,7 @@ import { LandingComponent } from './landing/landing.component';
 import { SignupComponent } from './signup/signup';
 import { Login} from './login/login';
 import { Table } from './table/table';
-import { ProjectComponent } from './project/project';
+import { Project} from './project/project';
 
 const routes: Routes = [
   // Add your routes here, for example:
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: Login},
   {path: 'table', component: Table},
-  {path: 'project', component: ProjectComponent},
+  {path: 'project', component: Project},
   
 ];
 
